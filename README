@@ -1,0 +1,36 @@
+Moates Burn1/2 and Ostrich interface and classes
+
+The classes contained in the src/ directory and it's subdirectories represent
+an encapsulation of the Moates Burn1/2 Chip burner and their Ostrich realtime
+chip emulator.  The command line interface to the burn1/2 hardware is pretty
+well fleshed out and tested.  I've used it repeatedly from my OSX laptop to
+burn working chips for my car.  
+
+The Ostrich class is pretty complete however no command line utility has been
+written as a front end to the class.  There is a OstrichDriver in the
+src/Ostrich/utils directory that can be expanded upon or be used to serve as
+a proof of concept for testing the hardware.
+
+The Serial class was written because I was unaware of boost at that time.  It
+attempts to smooth the differences between various operating systems. Both the
+Burn and Ostrich interfaces were tested on Linux, FreeBSD, OSX, and Windows
+under cygwin.  For Windows builds the Serial classes under src/Serial/windows
+should be used instead of the more unix oriented ones in src/Serial.  The
+configure and automake scripts are not setup to handle windows and cygwin
+in an automatic fashion which is a deficency that needs to be corrected in
+the future.
+
+To handle building and generation of makefiles gnu autoconf is used.  To build
+the software, just run autoreconf -i then './configure' from the top level
+directory.  Advanced autoconf users can use the --prefix, etc options as they
+wish.  If all goes well and you don't see any failures once the configre
+script completes you can run 'make'.  If there are no failures there you
+should see a file named 'burn' in the top level directory. If you wish to
+install the new binary 'make install' as root will do so, or you can just
+copy the binary to your ~/bin directory.  From there it's just a matter of
+running 'burn' with the proper options.  There is a copious help screen
+included with the binary.
+
+There will be an ostrich binary built, but it should be considered useful
+only for testing things out.  The source for teh executable is the
+OstrichDriver.cpp file in the src/Ostrich/utils directory.
